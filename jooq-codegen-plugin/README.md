@@ -1,7 +1,7 @@
 
 ### 参考
 
-[Mozilla](https://github.com/etiennestuder/gradle-jooq-plugin)
+[https://github.com/etiennestuder/gradle-jooq-plugin](插件地址)
 
 - 自动生成代码命令
 ```shell script
