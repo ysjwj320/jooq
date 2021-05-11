@@ -1,0 +1,68 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+import nu.studer.gradle.jooq.JooqEdition
+
+plugins {
+    id 'nu.studer.jooq' version '5.2.1'
+    id 'java'
+}
+
+repositories {
+    maven { url 'https://maven.aliyun.com/repository/public/' }
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    jooqGenerator 'org.mariadb.jdbc:mariadb-java-client:2.7.2'
+}
+
+jooq {
+    version = '3.14.7'
+    edition = JooqEdition.OSS
+
+    configurations {
+        main {
+            generationTool {
+                logging = org.jooq.meta.jaxb.Logging.WARN
+                jdbc {
+                    driver = 'org.mariadb.jdbc.Driver'
+                    url = 'jdbc:mariadb://127.0.0.1:23306'
+                    user = 'custom_user'
+                    password = 'custom_password'
+                    properties {
+                        property {
+                            key = 'PAGE_SIZE'
+                            value = 2048
+                        }
+                    }
+                }
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+                    database {
+                        name = 'org.jooq.meta.jdbc.JDBCDatabase'
+                        inputSchema = 'custom_database'
+                    }
+                    generate {
+                        deprecated = false
+                        records = false
+                        immutablePojos = true
+                        fluentSetters = true
+                    }
+                    target {
+                        packageName = 'com.walker.jooq.records'
+                        directory = 'src/generated/jooq'
+                    }
+                    strategy.name = "org.jooq.codegen.DefaultGeneratorStrategy"
+                }
+            }
+        }
+    }
+}
+
