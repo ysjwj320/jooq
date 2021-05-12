@@ -1,9 +1,9 @@
 
 ### 参考
 
-[https://github.com/etiennestuder/gradle-jooq-plugin](插件地址)
+[插件地址](https://github.com/etiennestuder/gradle-jooq-plugin)
 
-[https://www.jooq.org/doc/latest/manual/code-generation/](jooq文档)
+[jooq文档](https://www.jooq.org/doc/latest/manual/code-generation/)
 
 - 自动生成代码命令
 ```shell script
